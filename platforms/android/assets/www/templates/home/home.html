@@ -1,0 +1,111 @@
+﻿<ion-view view-title="WMS移动作业首页">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-positive icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ui-sref="login" nav-direction="forward" class="button button-positive icon ion-person" ></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header" overflow-scroll="false" on-scroll="vc.onHomeScroll($event)" delegate-handle="homeScroll">
+        <!-- 轮播 -->
+        <ion-slide-box does-continue="true" auto-play="true" style="width:100%;margin-bottom:-5px;">
+            <ion-slide ng-repeat="item in vo.slides track by $index">
+                <img style="width:100%;" ng-src="{{item.lbpicUrl}}">
+            </ion-slide>
+        </ion-slide-box>
+
+        <!-- 功能菜单 -->
+        <table class="icon-table text-content">
+            <tr ng-repeat="menus in HomeMenus">
+                <td ng-repeat="menu in menus.children">
+                    <div ui-sref="{{menu.url}}">
+                        <i ng-class="menu.icon" style="color:#ff7f50" ></i><br />
+                        <span>{{menu.text}}</span>
+                    </div>
+                </td>
+
+            </tr>
+
+        </table>
+
+        <!--<div class="list">-->
+            <!--<div class="item item-divider positive">-->
+                <!--<i class="ion-star"></i> 推荐产品-->
+            <!--</div>-->
+            <!--<div class="item padding">-->
+                <!--<ion-slide-box show-pager="false">-->
+                    <!--<ion-slide ng-repeat="item in vo.slides">-->
+                        <!--<div style="display:flex;justify-content:space-between;">-->
+                            <!--<div style="text-align:center;">-->
+                                <!--<img style="width:90%" ng-src="{{item.lbpicUrl}}">-->
+                                <!--<p>产品{{$index+1}}</p>-->
+                            <!--</div>-->
+                            <!--<div style="text-align:center;">-->
+                                <!--<img style="width:90%" ng-src="{{item.lbpicUrl}}">-->
+                                <!--<p>产品{{$index+1}}</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</ion-slide>-->
+                <!--</ion-slide-box>-->
+            <!--</div>-->
+        <!--</div>-->
+    </ion-content>
+    <ion-footer-bar>
+        <div class="button-bar">
+            <button class="button button-large icon ion-ios-undo-outline button-stable" ng-click="btnClear_Click()">清空
+            </button>
+            <button class="button button-large icon ion-android-checkmark-circle button button-balanced"
+                    ng-click="btnCheckIssueConfirm_Click()">确认无误
+            </button>
+        </div>
+    </ion-footer-bar>
+    <style>
+        .slider-pager .slider-pager-page {
+            color: white !important;
+        }
+
+        .slider-slide img {
+            width: 100%;
+        }
+
+        .slide-banner {
+            position: absolute;
+            top: 20px;
+            padding: 0 15px;
+            height: 30px;
+            line-height: 30px;
+            width: 100%;
+            font-size: 14px;
+            color: #DDD;
+        }
+
+        .slide-icon {
+            width: 22px;
+            vertical-align: middle;
+        }
+
+        .icon-table {
+            width: 100%;
+            text-align: center;
+            background: white;
+            font-size: 13px;
+            font-family: '黑体';
+            border: none;
+        }
+
+            .icon-table td {
+                height: 80px;
+                vertical-align: middle;
+                border: 1px solid #f0f0f0;
+            }
+
+                .icon-table td i {
+                    font-size: 24px;
+                }
+
+            .icon-table img {
+                width: 32px;
+                height: 32px;
+            }
+    </style>
+</ion-view>

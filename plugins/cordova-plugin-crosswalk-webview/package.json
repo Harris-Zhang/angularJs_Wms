@@ -1,0 +1,66 @@
+{
+  "_from": "cordova-plugin-crosswalk-webview@1.3.1",
+  "_id": "cordova-plugin-crosswalk-webview@1.3.1",
+  "_inBundle": false,
+  "_integrity": "sha1-K0dTVnFZkWyJyu7XsIUBgd4ToOU=",
+  "_location": "/cordova-plugin-crosswalk-webview",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-crosswalk-webview@1.3.1",
+    "name": "cordova-plugin-crosswalk-webview",
+    "escapedName": "cordova-plugin-crosswalk-webview",
+    "rawSpec": "1.3.1",
+    "saveSpec": null,
+    "fetchSpec": "1.3.1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-crosswalk-webview/-/cordova-plugin-crosswalk-webview-1.3.1.tgz",
+  "_shasum": "2b4753567159916c89caeed7b0850181de13a0e5",
+  "_spec": "cordova-plugin-crosswalk-webview@1.3.1",
+  "_where": "D:\\Project\\wms\\wmsNewEdition\\myApp2",
+  "author": "",
+  "bugs": {
+    "url": "https://crosswalk-project.org/jira"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-crosswalk-webview",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Changes the default WebView to CrossWalk",
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=4"
+    },
+    {
+      "name": "cordova-plugman",
+      "version": ">=4.2.0"
+    }
+  ],
+  "homepage": "https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview",
+  "keywords": [
+    "cordova",
+    "chromium",
+    "crosswalk",
+    "webview",
+    "engine",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "Apache 2.0",
+  "name": "cordova-plugin-crosswalk-webview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview.git"
+  },
+  "version": "1.3.1"
+}

@@ -1,0 +1,11 @@
+﻿{
+  "type": 1,
+  "message": "登录成功",
+  "value": {
+    "userId": "A1507123",
+    "userName": "张忠海",
+    "mail": "harris.zhang@bozhon.com",
+    "sex": "男",
+    "deptName": "信息化"
+  }
+}

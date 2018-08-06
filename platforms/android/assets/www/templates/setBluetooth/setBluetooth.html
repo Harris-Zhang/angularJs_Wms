@@ -1,0 +1,56 @@
+<ion-view view-title="蓝牙标签机设定" class="view-container stable-bg">
+    <ion-nav-buttons side="left">
+        <button ui-sref="home" nav-direction="back" class="button button-positive icon ion-chevron-left"></button>
+    </ion-nav-buttons>
+
+    <div style="top:44px; position: absolute;width:100%;">
+        <div class="row light-bg">
+            <div class="col item-toggle">
+                <span style="font-size:1.5em;margin-left: 20px">开启蓝牙</span>
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-model="isEnabled" ng-change="btnOpenOrClose_Click()">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="row light-bg" style="margin-top: 10px;">
+            <div class="col">
+                <div style="color:#5E5E5E;border-bottom: 1px solid #CCCCCC;padding-left: 20px;padding-bottom: 6px;">
+                    已连接的设备
+                </div>
+                <div style="font-size: 1.4em;margin-top: 6px;padding-left: 20px;">
+                    <i class="fa fa-bluetooth positive"></i>
+                    <span style="margin-left: 20px;">{{DeviceName}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <ion-content style="top:180px">
+        <ion-list can-swipe="true">
+            <!--<ion-item ng-repeat="item in IssueBody" class="item-remove-animate" ng-click="TransferItemDetailPage(item.ITEM_CODE)">-->
+            <!---->
+            <!--</ion-item>-->
+            <ion-item ng-repeat="device in Devices" ng-click="connectDevice(device)">
+                <div style="font-size: 1.4em;margin-top: 6px;padding-left: 10px;">
+                    <i class="icon ion-email"></i>
+                    <span style="margin-left: 10px;font-size:0.8em;">{{device.name}} ：{{device.id}}</span>
+                </div>
+
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="button-bar">
+            <button class="button button-large icon ion-android-checkmark-circle button button-balanced"
+                    ng-click="ShowBluetoothSettings()">系统蓝牙设置</button>
+            <button class="button button-large icon ion-ios-undo-outline button-stable" ng-click="Scan()">重新扫描</button>
+            <button class="button button-large button-energized" ng-click="TestPrinter()">测试打印</button>
+        </div>
+    </ion-footer-bar>
+
+</ion-view>

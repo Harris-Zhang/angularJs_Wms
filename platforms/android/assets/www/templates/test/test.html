@@ -1,0 +1,34 @@
+<ion-view view-title="测试回车事件">
+    <ion-nav-buttons side="left">
+        <button ui-sref="home" nav-direction="back" class="button button-positive icon ion-chevron-left" ng-hide="!isLogin"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <span class="input-label">用户名</span>
+                    <input type="text" name="username" ng-enter="login()" placeholder="请输入登录名" style="text-transform:uppercase;">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">密　码</span>
+                    <input type="password" name="password" placeholder="请输入密码" ng-model="account.passWord">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">条 码</span>
+                    <input type="text" name="validCode" ng-model="account.qrCode" placeholder="请扫描条码" autofocus>
+                </label>
+                <button class="button button-small button-light button-positive icon ion-qr-scanner" style="margin-left: 80%;" ng-click="scanQR()">扫一扫</button>
+                <div class="button-bar">
+                    <button class="button button-block button-positive" ng-click="login()">登 录</button>
+                    <button class="button button-block button-assertive" ng-click="exit_app()">退出系统</button>
+                </div>
+
+            </div>
+
+
+    </ion-content>
+
+</ion-view>

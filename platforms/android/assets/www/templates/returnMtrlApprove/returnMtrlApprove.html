@@ -1,0 +1,167 @@
+<ion-view view-title="退料确认" class="stable-bg">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-positive icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button native-ui-sref="home" native-options="{type: 'flip', direction:'left', duration:400}"
+                class="button button-positive icon ion-android-home"></button>
+    </ion-nav-buttons>
+    <toast ng-model="toast" position="bottom"></toast>
+    <div style="top:38px; position: absolute;width:100%;">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <div class="bar bar-header bar-light item-input-inset">
+                        <span class="input-label">单号/批次:</span>
+                        <label class="item-input-wrapper">
+                            <i class="icon ion-ios-search placeholder-icon"></i>
+                            <input type="search" placeholder="请扫描单据/批次二维码" ng-model="QrCode"
+                                   auto-focus="QRCodeInputFocus" ng-enter="btnInputQrCode_Enter(QrCode)">
+                        </label>
+                        <button class="button button-assertive" ng-click="clearQRInput()">
+                            清空
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="light-bg" style="padding:0 10px 0 10px;margin: 0 5px 5px 5px;">
+            <div class="row">
+
+                <div class="col-67 labelHide"> 单号：{{ReturnHead.ISSUE_RECEIPT_NO}}</div>
+                <div class="col-33 labelHide"> 类型：{{ReturnHead.TICKET_TYPE_NAME}}</div>
+            </div>
+            <div class="row">
+                <div class="col-50 labelHide">退料人员：{{ReturnHead.PACK_USER_NAME}}</div>
+                <div class="col-50 labelHide">退料部门：{{ReturnHead.PACK_DEPT_NAME}}</div>
+            </div>
+            <div class="row">
+                <div class="col-50 labelHide">退料日期：{{ReturnHead.PACK_DATE}}</div>
+                <div class="col-50 labelHide">备&nbsp;&nbsp;&nbsp;&nbsp;注：{{ReturnHead.REMARK}}</div>
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-header" overflow-scroll="false" scroll="true" style="top:172px;"
+                 delegate-handle="listReturnBody">
+        <ion-list can-swipe="true" id="list_ReturnBody">
+
+            <ion-item ng-repeat="item in ReturnBody" class="item-remove-animate" style="padding: 10px;" ng-class="{'energized-bg':$index===selected}">
+                <div style="float:left;width:6%;height:60px;">
+                    <div style="width:100%;height:22px;margin-top:25px;text-align: center;border-radius: 25%;background-color: #0c63ee;color: white;font-size: 13px">
+                        {{$index+1}}
+                    </div>
+                </div>
+                <div style="float:left;width: 94%;padding-left: 2px"
+                     ng-style="SetStyle(item.ISSUE_RECEIPT_QTY,item.ACTUAL_ISSUE_RECEIPT_QTY)">
+                    <div class="row">
+                        <div class="col-50"><h3>品号：{{item.ITEM_CODE}}</h3></div>
+                        <div class="col-50"><h3>品名：{{item.ITEM_NAME}}</h3></div>
+
+                    </div>
+                    <div class="row" style="margin-top:2px;padding-top: 2px;">
+                        <div class="col-33"><h3>需退：{{item.ISSUE_RECEIPT_QTY}}</h3></div>
+                        <div class="col-33"><h3>已退：{{item.ACTUAL_ISSUE_RECEIPT_QTY}}</h3></div>
+                        <div class="col-33"><h3>单位：{{item.UNIT_CODE}}</h3></div>
+                    </div>
+                    <div class="row" style="margin-top:2px;padding-top: 2px;">
+                        <div class="col-50"><h3>工单：{{item.MO_NO}}</h3></div>
+                        <div class="col-50"><h3>母工单：{{item.MM_MO_NO}}</h3></div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="button-bar">
+            <button class="button button-large icon ion-ios-undo-outline button-stable" ng-click="btnClear_Click()">清空
+            </button>
+            <button class="button button-large icon ion-android-checkmark-circle button button-balanced"
+                    ng-click="btnCheckReturnConfirm_Click()">确认无误
+            </button>
+        </div>
+    </ion-footer-bar>
+
+    <style>
+        .input-label {
+            display: table;
+            padding: 7px 10px 7px 0;
+            max-width: 200px;
+            width: auto;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .col {
+            padding: 2px;
+        }
+
+        .labelHide {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <script id="TransferLocDetail.html" type="text/ng-template">
+        <ion-modal-view class="stable-bg">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">退料储位明细</h1>
+                <button class="button button-clear button-primary" ng-click="ItemDetailModal.hide()">关闭</button>
+            </ion-header-bar>
+            <div class="padding"
+                 style="top:38px; position: absolute;width:100%;padding-top:2px;">
+                <div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="bar bar-header bar-light item-input-inset">
+                                <span class="input-label">储位:</span>
+                                <label class="item-input-wrapper">
+                                    <i class="icon ion-ios-search placeholder-icon"></i>
+                                    <input type="search" id="txtLocQrCode" placeholder="请扫描储位二维码" ng-model="LocQrCode"
+                                           auto-focus="LocQrCodeInputFocus"
+                                           ng-enter="btnInputLocQrCode_Enter(LocQrCode)">
+                                </label>
+                                <button class="button button-assertive" ng-click="clearStkLocData(LocQrCode)">
+                                    清空
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="light-bg" style="padding:0 10px 0 10px;margin: 0 5px 5px 5px;">
+                    <div class="row">
+                        <div class="col-50 labelHide"> 品号：{{ItemLocHead.ITEM_CODE}}</div>
+                        <div class="col-50 labelHide"> 品名：{{ItemLocHead.ITEM_NAME}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col labelHide"> 规格：{{ItemLocHead.ITEM_SPEC}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col labelHide"> 母工单：{{ItemLocHead.MM_MO_NO}}</div>
+                    </div>
+                </div>
+            </div>
+            <ion-content style="top:183px;">
+                <ion-list can-swipe="true">
+
+                    <ion-item ng-repeat="item in ItemLocBody" class="item-remove-animate" style="padding: 10px;">
+                        <div style="float:left;width:6%;height:60px;">
+                            <div style="width:100%;height:22px;margin-top:25px;text-align: center;border-radius: 25%;background-color: #0c63ee;color: white;font-size: 13px">
+                                {{$index+1}}
+                            </div>
+                        </div>
+                        <div style="float:left;width: 94%;padding-left: 2px">
+                            <div class="row">
+                                <div class="col-50"><h3>储位：{{item.LOCATOR_CODE}}</h3></div>
+                                <div class="col-50"><h3 ng-style="SetLocStyle(item.LOCATOR_DESC)">推荐<li class="fa fa-thumbs-o-up"></li></h3></div>
+                            </div>
+                            <div class="row" style="margin-top:2px;padding-top: 2px;">
+                                <div class="col-50"><h3>仓别：{{item.WAREHOUSE_NAME}}</h3></div>
+                                <div class="col-50"><h3>库位：{{item.BIN_NAME}}</h3></div>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

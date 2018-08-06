@@ -1,0 +1,88 @@
+<ion-view view-title="{{isLogin?'个人信息':'用户登录'}}" class="login" >
+    <ion-nav-buttons side="left">
+        <button ui-sref="home" nav-direction="back" class="button button-positive icon ion-chevron-left" ng-hide="!isLogin"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header content">
+        <form name="form" ng-hide="isLogin">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <span class="input-label">用户名</span>
+                    <input type="text" name="username" ng-model="account.userId" placeholder="请输入登录名" >
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">密　码</span>
+                    <input type="password" name="password" placeholder="请输入密码" ng-model="account.passWord">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">条 码</span>
+                    <input type="text" name="validCode" ng-model="account.qrCode" placeholder="请扫描条码" autofocus>
+                </label>
+                <!--<button class="button button-small button-light button-positive icon ion-qr-scanner" style="margin-left: 80%;" ng-click="scanQR()">扫一扫</button>-->
+                <div class="button-bar">
+                    <button class="button button-block button-positive" ng-click="login()">登 录</button>
+                    <button class="button button-block button-assertive" ng-click="exit_app()">退出系统</button>
+                </div>
+
+            </div>
+        </form>
+        <ion-list class="userInfo" ng-hide="!isLogin">
+            <div class="blank"></div>
+            <img src="img/userHead/user_head.jpg">
+            <div class="blank"></div>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">登录名：</span>
+                <span class="msg">{{user.USER_CODE}}</span>
+            </ion-item>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">姓 名：</span>
+                <span class="msg">{{user.USER_NAME}}</span>
+            </ion-item>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">邮 箱：</span>
+                <span class="msg">{{user.USER_EMAIL}}</span>
+            </ion-item>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">手 机：</span>
+                <span class="msg">{{user.USER_TEL}}</span>
+            </ion-item>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">说 明：</span>
+                <span class="msg">{{user.USER_DESC}}</span>
+            </ion-item>
+            <!--<ion-item class="mine-msg-item item">-->
+                <!--<span class="msg">性 别：</span>-->
+                <!--<span class="msg">{{user.USER_SEX==1?'女':'男'}}</span>-->
+            <!--</ion-item>-->
+            <!--<ion-item class="mine-msg-item item">-->
+                <!--<span class="msg">部 门：</span>-->
+                <!--<span class="msg">{{user.DEPT_NAME}}</span>-->
+            <!--</ion-item>-->
+            <ion-item class="mine-msg-item item">
+                <span class="msg">版 本：</span>
+                <span class="msg"> 当前({{Versions.client_v}})| 服务器({{Versions.server_v}})</span>
+            </ion-item>
+            <ion-item class="mine-msg-item item">
+                <span class="msg">api地址：</span>
+                <span class="msg">{{Versions.server_url}}</span>
+            </ion-item>
+
+
+            <!--<div class="button-bar">-->
+                <!--<button class="button button-block button-energized" ng-click="changeLogin()">切换用户</button>-->
+                <!--<button class="button button-block button-assertive" ng-click="exit_app()">退出系统</button>-->
+            <!--</div>-->
+        </ion-list>
+
+
+
+    </ion-content>
+    <ion-footer-bar style="padding: 0" ng-hide="!isLogin">
+        <div class="button-bar">
+            <button class="button button-large button-block button-energized" ng-click="changeLogin()">切换用户</button>
+            <button class="button button-large button-block button-assertive" ng-click="exit_app()">退出系统</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

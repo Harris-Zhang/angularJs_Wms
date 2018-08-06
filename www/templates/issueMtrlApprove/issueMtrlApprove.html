@@ -1,0 +1,110 @@
+<ion-view view-title="领料出库审核" class="stable-bg">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-positive icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button native-ui-sref="home" native-options="{type: 'flip', direction:'left', duration:400}"
+                class="button button-positive icon ion-android-home"></button>
+    </ion-nav-buttons>
+    <toast ng-model="toast" position="bottom"></toast>
+    <div style="top:38px; position: absolute;width:100%;">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <div class="bar bar-header bar-light item-input-inset">
+                        <span class="input-label">单号/批次:</span>
+                        <label class="item-input-wrapper">
+                            <i class="icon ion-ios-search placeholder-icon"></i>
+                            <input type="search" placeholder="请扫描单据/批次二维码" ng-model="QrCode"
+                                   auto-focus="QRCodeInputFocus" ng-enter="btnInputQrCode_Enter(QrCode)">
+                        </label>
+                        <button class="button button-assertive" ng-click="clearQRInput()">
+                            清空
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="light-bg" style="padding:0 10px 0 10px;margin: 0 5px 5px 5px;">
+            <div class="row">
+                <div class="col labelHide">
+                    <span>单号：{{IssueHead.ISSUE_RECEIPT_NO}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-50 labelHide">领料人员：{{IssueHead.PACK_USER_NAME}}</div>
+                <div class="col-50 labelHide">领料部门：{{IssueHead.PACK_DEPT_NAME}}</div>
+            </div>
+            <div class="row">
+                <div class="col-50 labelHide">领料日期：{{IssueHead.PACK_DATE}}</div>
+                <div class="col-50 labelHide">备&nbsp;&nbsp;&nbsp;&nbsp;注：{{IssueHead.REMARK}}</div>
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-header" overflow-scroll="false" scroll="true" style="top:177px;"
+                 delegate-handle="listIssueBody">
+        <ion-list can-swipe="true" id="list_IssueBody">
+
+            <ion-item ng-repeat="item in IssueBody" class="item-remove-animate" style="padding: 10px;">
+                <!--<div style="float:left;vertical-align: middle;width: 4%;line-height: 30px;-->
+                <!--color: white;text-align: center;border-radius: 25%;background-color: #0c63ee;font-size: 14px"-->
+                <!--ng-bind="$index+1">-->
+                <!--1-->
+                <!--</div>-->
+                <div style="float:left;width:6%;height:60px;">
+                    <div style="width:100%;height:22px;margin-top:25px;text-align: center;border-radius: 25%;background-color: #0c63ee;color: white;font-size: 13px">
+                        {{$index+1}}
+                    </div>
+                </div>
+                <div style="float:left;width: 94%;padding-left: 2px"
+                     ng-style="SetStyle(item.ACTUAL_ISSUE_RECEIPT_QTY,item.READY_QTY,item.CHECK_QTY)">
+                    <div class="row">
+                        <div class="col-50"><h3>品号：{{item.ITEM_CODE}}</h3></div>
+                        <div class="col-50"><h3>品名：{{item.ITEM_NAME}}</h3></div>
+
+                    </div>
+                    <div class="row" style="margin-top:2px;padding-top: 2px;">
+                        <div class="col-50"><h3>需求：{{item.ISSUE_RECEIPT_QTY}}</h3></div>
+                        <div class="col-50"><h3>预约：{{item.ACTUAL_ISSUE_RECEIPT_QTY}}</h3></div>
+                    </div>
+                    <div class="row" style="margin-top:2px;padding-top: 2px;">
+                        <div class="col-33"><h3>已备：{{item.READY_QTY}}</h3></div>
+                        <div class="col-33"><h3>确认：{{item.CHECK_QTY}}</h3></div>
+                        <div class="col-33"><h3>单位：{{item.UNIT_CODE}}</h3></div>
+                        <!--<div class="col-50"><h3>状态：{{item.STATUS}}</h3></div>-->
+
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="button-bar">
+            <button class="button button-large icon ion-ios-undo-outline button-stable" ng-click="btnClear_Click()">清空
+            </button>
+            <button class="button button-large icon ion-android-checkmark-circle button button-balanced"
+                    ng-click="btnApproveIssueConfirm_Click()">审核
+            </button>
+        </div>
+    </ion-footer-bar>
+    <style>
+        .input-label {
+            display: table;
+            padding: 7px 10px 7px 0;
+            max-width: 200px;
+            width: auto;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .col {
+            padding: 2px;
+        }
+
+        .labelHide {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</ion-view>

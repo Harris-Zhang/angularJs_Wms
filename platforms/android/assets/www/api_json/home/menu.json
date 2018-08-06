@@ -1,0 +1,40 @@
+[{
+  "text": "系统管理",
+  "children": [{
+    "text": "首页",
+    "url": "home",
+    "icon": "fa fa-home fa-fw"
+  }, {
+    "text": "下拉刷新",
+    "url": "list",
+    "icon": "fa fa-book fa-fw"
+  }, {
+    "text": "设定蓝牙设备",
+    "url": "setBluetooth",
+    "icon": "fa fa-bars fa-fw"
+  }, {
+    "text": "发料作业",
+    "url": "IssueMtrlReady",
+    "icon": "fa fa-bar-chart fa-fw"
+  }, {
+    "text": "表单",
+    "url": "form",
+    "icon": "fa fa-list-alt fa-fw"
+  }, {
+    "text": "选项卡",
+    "url": "tab",
+    "icon": "fa fa-folder-o fa-fw"
+  }, {
+    "text": "登录",
+    "url": "login",
+    "icon": "fa fa-lock fa-fw"
+  }, {
+    "text": "加载图标",
+    "url": "loading",
+    "icon": "fa fa-spinner fa-pulse fa-fw"
+  }, {
+    "text": "测试页面",
+    "url": "test",
+    "icon": "fa fa-spinner fa-pulse fa-fw"
+  }]
+}]
